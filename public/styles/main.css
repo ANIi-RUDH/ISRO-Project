@@ -1,0 +1,238 @@
+
+.outter {
+  border: 2px solid red;
+  position: absolute;
+  display: inline-flex;
+  width: 100%;
+  background-color: rgb(200, 203, 200);
+  mix-blend-mode: multiply;
+}
+
+.left img{
+  padding: 5px;
+margin-right: 10px;
+  border : 2px solid rgb(147, 25, 12);
+  
+}
+  .right{
+    padding: 0px;
+    margin: 0px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+  
+  }
+  #map {
+    margin-top: 102px;
+    display: inline-flex;
+    /* margin-left: 40px; */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 800px;
+  }
+  
+  
+
+
+img {
+  height: 75px;
+   
+  width: 75px;
+  margin-left: 20px;
+}
+
+
+h2 {
+  font-size:xx-large;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: rgb(255, 0, 0);
+  text-transform: initial;
+  margin: 0; 
+  
+}
+
+
+a {
+  color: black;
+  text-decoration: none;
+  margin-right: 15px; 
+}
+
+
+@media (max-width: 768px) {
+  .header-logo img {
+    height: 50px; 
+  }
+}
+
+/* 
+.switch {
+
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+
+}
+
+
+
+.switch input {
+  opacity: 50%;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #094047;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(67, 8, 79);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4fb0ff;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #1d93c2;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+ */
+
+
+ /* .pick{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  }
+  
+  .pick .form{
+    display: grid;
+  margin-left:10px;
+  height:100px;
+  width:280px;
+  margin-top:100px;
+  
+  } */
+
+  .pick {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+  
+  .pick .form {
+    display: grid;
+    margin-left: 10px;
+    height: 100px;
+    width: 280px;
+    margin-top: 100px;
+    gap: 10px; /* Adds space between the form elements */
+  }
+  
+  .pick .form button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in;
+  }
+  
+  .pick .form button:hover {
+    background-color: #023e7d; /* Darker shade of the primary color */
+  }
+  
+  .pick .form select {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .pick .form select:focus {
+    border-color: #007bff74;
+    outline: none;
+  }
+  
+  .pick .form input[type="submit"] {
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pick .form input[type="submit"]:hover {
+    background-color: #166127; /* Darker shade of the success color */
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

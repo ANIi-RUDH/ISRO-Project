@@ -1,0 +1,251 @@
+<%- include("partials/header.ejs"); -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NRSC header</title>
+  <!-- leaflet css link -->0
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+  <link rel="stylesheet" href="../public/styles/main.css">
+
+  <!-- Leaflet scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+    <!-- jQuery script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+    <!-- Precipitation scripts and links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/mwasil/Leaflet.Rainviewer/leaflet.rainviewer.js"></script>
+</head>
+<body>
+<div class="pick">
+<!-- 
+  <div class="form">
+
+    <button onclick=fullScreenView()> Full Screen </button>
+    <div class="coordinate"></div>
+    <label for="cars">Choose a Filter:</label>
+    <select id="cars" name="cars">
+      <option value="one">1</option>
+      <option value="two">2</option>
+      <option value="three">3</option>
+        <option value="four">4</option>
+      </select>
+      <input type="submit">
+    
+  </div> -->
+  <div id="map"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    // Initial layer of the map from Bhuvan
+    let map = L.map('map').setView([20.59, 78.96],5);
+    map.zoomControl.setPosition('topright')
+    let osm = L.tileLayer.wms('https://bhuvan-vec1.nrsc.gov.in/bhuvan/gwc/service/wms/', {
+      layers: 'india3',
+      attribution: 'Bhuvan, nrsc/ISRO'
+    });
+
+    osm.addTo(map);
+    console.log("the log is",osm)
+    
+    // Terrains layer is declared below
+    let Terrain1 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: ''
+    });
+    // Terrain1.addTo(map)
+    
+    // PRECIPITATION CODE IS IN TERRAIN 2 
+    let Terrain2=
+    L.control.rainviewer({ 
+        position: 'bottomleft',
+        nextButtonText: 'NEXT',
+        playStopButtonText: 'Play/Stop',
+        prevButtonText: 'BACK',
+        positionSliderLabelText: "Hour:",
+        opacitySliderLabelText: "Opacity:",
+        animationInterval: 500,
+        opacity: 0.5
+      })
+      Terrain2.addTo(map)
+      
+      
+      
+      navigator.geolocation.watchPosition(getPosition,error);
+      
+    function getPosition(props){
+      let lat=props.coords.latitude;
+      let lng=props.coords.longitude;
+      let accuracy=props.coords.accuracy;
+      
+      let marker,featureGroup
+   console.log(lat,lng,accuracy)
+   L.control.scale().addTo(map)
+   
+   marker=L.marker([lat,lng],{
+     draggable:true,
+     title:"Location of This place"})
+     
+     if(marker){
+       map.removeLayer(marker)
+      }
+    
+      featureGroup=L.featureGroup([marker]).addTo(map).bindPopup("<h1>State</h1> <p>District</p> <img src='../styles/demo.png'/> ")
+       
+    }
+
+    
+
+    
+    
+    
+    
+    
+    //MAP COORDINATES:
+    
+    map.on('mousemove',function(e){
+  const lat = e.latlng.lat.toFixed(2);
+  const lng = e.latlng.lng.toFixed(2);
+  
+  // Log the formatted coordinates to the console
+  console.log(`Lat: ${lat}, Lng: ${lng}`);
+  $('.coordinate').html(`Lat:${lat}, Lng: ${lng}`)
+})
+
+var mapId=document.getElementById('map');
+function fullScreenView(){
+  mapId.requestFullscreen();
+    }
+    function error(err){
+      if (err===1){
+        alert("Please Allow Access To Your Location")
+      }
+      else{
+        alert("Cannot get Current Location")
+      }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    </script>    
+<!-- PLOTTING GRAPH -->
+
+<!-- 
+
+<div style=" height: 800px; width: 800px;">
+  <canvas  id="myChart"></canvas>
+  <button onclick=FULL()>FULL</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  function FULL(){
+    ctx.requestFullscreen();
+  }
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'],
+      datasets: [{
+        label: 'Heat Levels',
+        data: [30,35,33,45,40,33,42,39,40,31,36,41],
+        borderWidth: 3,
+        
+       borderColor: 'rgba(255, 89, 8, 5)', 
+       backgroundColor: 'rgba(255, 89, 8, 0.1)'
+  },{
+    label: 'Cool Levels',
+    data: [22,24,18,10,14,22,20,19,25,23,26,20],
+    borderWidth: 3,
+    borderColor: 'rgba(145, 220, 0, 5)', 
+    backgroundColor: 'rgba(145, 220, 0, 0.1)'
+  }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true, 
+          min: 0,
+          max: 60
+        },
+      },
+      elements:{
+        line:{
+          borderWidth:5,
+          borderRadius:10,
+          fill:true,
+          tension:0.12
+        }
+      }
+    }
+  });
+
+</script>
+
+ -->
+
+
+</body>
+</html>
+
+
+<%- include("partials/footer.ejs") -%>
